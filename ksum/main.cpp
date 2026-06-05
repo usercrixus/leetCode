@@ -4,15 +4,9 @@
 #include <iostream>
 class Solution {
 public:
-    void recur(std::vector<int>& nums, std::vector<int>& tested, int target, std::size_t start, std::size_t size, std::vector<std::vector<int>>& result)
+
+    void twoSum(std::vector<int>& nums, std::vector<int>& tested, int target, std::size_t start, std::vector<std::vector<int>>& result)
     {
-        if (size < 2 || tested.size() > size || start > nums.size())
-            return;
-        std::size_t numbersNeeded = size - tested.size();
-        if (nums.size() - start < numbersNeeded)
-            return;
-        if (tested.size() == size - 2)
-        {
             std::size_t i = start;
             std::size_t j = nums.size() - 1;
             long long selectedSum = 0;
@@ -39,9 +33,17 @@ public:
                 else
                     --j;
             }
+    }
+
+    void recur(std::vector<int>& nums, std::vector<int>& tested, int target, std::size_t start, std::size_t size, std::vector<std::vector<int>>& result)
+    {
+        if (tested.size() == size - 2)
+        {
+            twoSum(nums, tested, target, start, result);
         }
         else
         {
+            std::size_t numbersNeeded = size - tested.size();
             for (std::size_t i = start; i + numbersNeeded <= nums.size(); ++i)
             {
                 if (i > start && nums[i] == nums[i - 1])
