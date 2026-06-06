@@ -1,4 +1,6 @@
 
+#include <iostream>
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -36,3 +38,34 @@ public:
 		return dummy.next;
 	}
 };
+
+int main()
+{
+	ListNode l1Third(3);
+	ListNode l1Second(4, &l1Third);
+	ListNode l1(2, &l1Second);
+
+	ListNode l2Third(4);
+	ListNode l2Second(6, &l2Third);
+	ListNode l2(5, &l2Second);
+
+	Solution solution;
+	ListNode *result = solution.addTwoNumbers(&l1, &l2);
+
+	for (ListNode *node = result; node; node = node->next)
+	{
+		std::cout << node->val;
+		if (node->next)
+			std::cout << " -> ";
+	}
+	std::cout << std::endl;
+
+	while (result)
+	{
+		ListNode *next = result->next;
+		delete result;
+		result = next;
+	}
+
+	return 0;
+}

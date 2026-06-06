@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <cstddef>
 #include <iostream>
+
+#define K 4
+
 class Solution {
 public:
 
@@ -58,11 +61,11 @@ public:
     std::vector<std::vector<int>> fourSum(std::vector<int>& nums, int target)
     {
         std::vector<std::vector<int>> result;
-        if (nums.size() < 4)
+        if (nums.size() < K)
             return result;
         std::sort(nums.begin(), nums.end());
         std::vector<int> tested;
-        recur(nums, tested, target, 0, 4, result);
+        recur(nums, tested, target, 0, K, result);
         return result;
     }
 };
